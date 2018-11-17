@@ -1,0 +1,34 @@
+{
+  "name": "geologie-nl",
+  "version": "0.0.1",
+  "description": "Leaflet geologische kaart van Nederland",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --keep-fnames -p --progress --display-error-details",
+    "start:dev": "webpack-dev-server",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulesBlm/GeologischeKaart.nl.git"
+  },
+  "keywords": [
+    "geologie"
+  ],
+  "author": "Jules Blom",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JulesBlm/GeologischeKaart.nl/issues"
+  },
+  "homepage": "https://github.com/JulesBlm/GeologischeKaart.nl#readme",
+  "dependencies": {
+    "leaflet": "^1.3.4"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.0.1",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
