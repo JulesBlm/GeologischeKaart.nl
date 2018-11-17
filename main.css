@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+}
+
+#mapid { height: 100vh; }
+
+.info {
+    padding: 20px 30px;
+    font: 20px/24px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+.leaflet-interactive {
+    transition: fill 100ms ease;
+}
