@@ -2,7 +2,16 @@ body {
     margin: 0;
 }
 
-#mapid { height: 100vh; }
+#mapid { 
+  height: 100vh;
+  position: relative;
+ }
+
+#geotimescale {
+  position: absolute;
+  bottom: -165px;
+  left: 0px;
+}
 
 .info {
     padding: 20px 30px;
@@ -21,4 +30,62 @@ body {
 
 .leaflet-interactive {
     transition: fill 100ms ease;
+}
+
+#showgeotimescale {
+  position: absolute;
+  bottom: -3px;
+  z-index: 500 !important;
+  font-size: 1.5rem;
+  left: 100px;
+  background: #DFF2F2;
+  opacity: 0.7;
+  border: 1px solid #777;
+  border-radius: 3px;
+  transition: all 80ms ease-in-out;
+}
+
+#showgeotimescale:hover {
+  bottom: -2px;
+  transform: scale(1.05);
+  background: #F6F6F6;
+}
+
+#showgeotimescale:active {
+  outline: none;
+}
+
+/* geo-timescale */
+.timescale {
+    font-family: Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 0.8em;
+    color:#333;
+    cursor: pointer;
+    }
+
+rect {
+  stroke: #fff;
+  stroke-width:1px;
+}
+#l0 {
+  fill:#fff !important;
+}
+line {
+  stroke:#777;
+}
+.level1 {
+  font-size: 1em;
+}
+.level2 {
+  font-size: 0.9em;
+}
+.level3 {
+  font-size: 0.75em;
+}
+.level4 {
+  font-size: 0.65em;
+}
+.level5 {
+  font-size: 0.6em;
 }
