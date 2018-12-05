@@ -9,7 +9,6 @@ body {
 
 #geotimescale {
   position: absolute;
-  bottom: -165px;
   left: 0px;
 }
 
@@ -22,6 +21,7 @@ body {
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
 }
+
 .info h4 {
     font-size: 20px;
     margin: 0 0 5px;
@@ -35,14 +35,14 @@ body {
 #showgeotimescale {
   position: absolute;
   bottom: -3px;
-  z-index: 500 !important;
   font-size: 1.5rem;
   left: 100px;
   background: #DFF2F2;
   opacity: 0.7;
   border: 1px solid #777;
   border-radius: 3px;
-  transition: all 80ms ease-in-out;
+  z-index: 1000;
+  transition: all 100ms ease-in-out;
 }
 
 #showgeotimescale:hover {
@@ -50,6 +50,30 @@ body {
   transform: scale(1.05);
   background: #F6F6F6;
 }
+
+@media screen and (max-width: 750px) {
+  #showgeotimescale {
+    bottom: 85px;
+    left: -45px;
+    transform: rotate(90deg);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  #showgeotimescale:hover {
+    bottom: 85px;
+    left: -45px;
+    transform: rotate(90deg) scale(1.05);
+    background: #F6F6F6;
+  }
+
+  .info {
+    padding: 15px 20px;
+    width: 200px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+  }
+}
+  
 
 #showgeotimescale:active {
   outline: none;
