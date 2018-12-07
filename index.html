@@ -1,19 +1,15 @@
-<!DOCTYPE html lang="nl">
-<html>
-<head>
-    <meta charset="utf-8" />
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Overzichts geologische kaart van Nederland. Data afkomstig van Geologische Dienst Nederland, onderdeel van TNO">
 
     <title>Geologische Kaart Nederland</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" sizes="192x192"  href="favicon.png">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
-    integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-    crossorigin=""/>
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+    <link rel="preload" type="text/css" media="screen" href="main.css" as="style"><style>body{margin:0}#mapid{height:100vh;position:relative}#geotimescale{position:absolute;left:0}#showgeotimescale{position:absolute;bottom:-3px;font-size:1.5rem;left:100px;background:#dff2f2;opacity:.7;border:1px solid #777;border-radius:3px;z-index:1000;transition:all .1s ease-in-out}#showgeotimescale:hover{bottom:-2px;transform:scale(1.05);background:#f6f6f6}@media screen and (max-width:750px){#showgeotimescale{bottom:85px;left:-45px;transform:rotate(90deg);writing-mode:vertical-rl;text-orientation:mixed}#showgeotimescale:hover{bottom:85px;left:-45px;transform:rotate(90deg) scale(1.05);background:#f6f6f6}}#showgeotimescale:active{outline:none}</style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="">
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-104492042-7"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-104492042-7"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -30,5 +26,5 @@
     <div id="geotimescale"></div>
     <script src="js/bundle.js"></script>
 
-</body>
-</html>
+<script type="text/javascript" src="js/bundle.js"></script>
+<link rel="stylesheet" media="screen" href="main.css"></body></html>
