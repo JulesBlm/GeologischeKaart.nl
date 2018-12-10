@@ -2,19 +2,17 @@ import L from "leaflet";
 import { feature } from "topojson-client";
 import {} from "leaflet.vectorgrid/dist/Leaflet.VectorGrid.bundled.js"
 
-// import leaflet css bundle and minify css with webpack
 /*
-SOON
+Todo list
+- import leaflet css bundle and minify css with webpack
 - RIGHT COLORS?!
-- Onclick interactiviy (zoom to?)
+- Resize timescale on window resize
+- Add link to grondwatertools geologische overzichtskaart
 
 LATER
 - Iets beters dan GeoJSON verzinnen?
 - Show relief or option for satellite background?
 - Op zoom getailleerdere kaart laden
-- Uit meerdere layers kunnen kiezen
-    - Composite layers http://bl.ocks.org/rclark/6705915
-    - Check how Macrostat solves this
 
 - MAKE file voor die facking ArcGis naar GeoJSON met kleur etc of zieke oneliner
     1. ogr2ogr shp to geojson
@@ -138,41 +136,35 @@ fetch("jsons/geologieNL.topojson").then(function(response) {
     
     let geomapVector;
     let clicked = false;
+    let clickedFeature;
     
     function click(e) {
-        // console.log("clicked!", e)
-
+        const properties = e.layer.properties;
+        geomapVector.resetFeatureStyle(clickedFeature);
         if (clicked) {
-            // console.log("something was already clicked, set clicked to false")
-            document.querySelector(".info").style.cssText = "border: none"; 
+            clickedFeature = undefined;
+            document.querySelector(".info").style.cssText = "border: none";
         } else {
-            // set css of box if clicked is true
-            document.querySelector(".info").style.cssText = "border: 1px solid black; box-shadow: 1px 7px 40px 0px rgba(0,0,0,0.75);"; 
+            clickedFeature = properties.id;
+            document.querySelector(".info").style.cssText = "border: 2px solid coral; box-shadow: 1px 7px 40px 0px rgba(0,0,0,0.75);"; 
         }
         clicked = !clicked;
 
-        const properties = e.layer.properties;
-
         const style = {
             stroke: true,
-            weight: 10,
+            weight: 2,
             color: `coral`,
             fill: true,
             fillColor: `coral`,
             fillOpacity: 0.6
         };
-
-        if (timescaleDrawn) timescale.goTo(properties.CHRONO_PER)
-
         geomapVector.setFeatureStyle(properties.id, style);
-
         info.update(properties);
+        if (timescaleDrawn) timescale.goTo(properties.CHRONO_EPO)
     }
 
     function hover(e) {
         const properties = e.layer.properties;
-    
-        geomapVector.resetFeatureStyle(properties.id);
     
         const style = {
             stroke: true,
@@ -183,7 +175,7 @@ fetch("jsons/geologieNL.topojson").then(function(response) {
             fillOpacity: 0.6
         };
     
-        geomapVector.setFeatureStyle(properties.id, style);
+        if (properties.id !== clickedFeature) geomapVector.setFeatureStyle(properties.id, style);
     
         e.layer.bringToFront();
         // if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
@@ -191,19 +183,8 @@ fetch("jsons/geologieNL.topojson").then(function(response) {
     
         if (!clicked) { info.update(properties); }
     }
-        
-    // Convert TopoJSON to GeoJSON
-    const geologicalmap_geojson = feature(geologicalmap, geologicalmap.objects.geologieNL);
-
-    var highlight;
-    var clearHighlight = function() {
-        if (highlight) {
-            geomapVector.resetFeatureStyle(highlight);
-        }
-        highlight = null;
-    };
-
-    geomapVector = L.vectorGrid.slicer(geologicalmap_geojson, {
+    
+    geomapVector = L.vectorGrid.slicer(feature(geologicalmap, geologicalmap.objects.geologieNL), {
                 vectorTileLayerStyles: {
                     sliced: function(properties, zoom) {
                         return {
@@ -228,13 +209,11 @@ fetch("jsons/geologieNL.topojson").then(function(response) {
                 }).on("click", function(e) {
                     click(e);
                 }).on(`mouseout`, function(e) {
-                    geomapVector.resetFeatureStyle(e.layer.properties.id);
+                    if (e.layer.properties.id !== clickedFeature) geomapVector.resetFeatureStyle(e.layer.properties.id);
                 }).on(`touchend`, function(e) {
-                    geomapVector.resetFeatureStyle(e.layer.properties.id);
+                    if (e.layer.properties.id !== clickedFeature) geomapVector.resetFeatureStyle(e.layer.properties.id);
                 }).addTo(map);
 })
-
-
 
 var info = L.control();
 
@@ -245,21 +224,16 @@ info.onAdd = function (map) {
 };
 
 info.update = function (props) {
-    // console.log(props);
-    this._div.innerHTML = `<h4>Formatie</h4> <br /> ${props ? `${props.CHRONO_PER} ${props.CHRONO_EPO} <p> ${key[props.KRTCODE].info}</p>` : "Beweeg je muis over een formatie, klik er op om deze vast te zetten"}`
+    this._div.innerHTML = `<h4>Formatie</h4> <br /> ${props ? `<strong>${props.CHRONO_PER} ${props.CHRONO_EPO}</strong> <p> ${key[props.KRTCODE].info}</p>` : "Beweeg je muis over een formatie, klik er op om deze vast te zetten"}`
 };
 
 info.addTo(map);
 
-
 L.control.scale().addTo(map);
 map.attributionControl.addAttribution("Geologische Kaart &copy; <a href='https://www.grondwatertools.nl/geologische-overzichtskaart'>TNO Geologische Dienst Nederland</a>");
 
-// legend.addTo(map);
 let timescaleShown = false;
-
-// So when a feature is clicked it can acces timescale function
-let timescale;
+let timescale; // So when a feature is clicked it can acces timescale function, scope
 
 // On click of show timescale button lazy load timescale js and initialize
 document.querySelector("#showgeotimescale").onclick = (e) => {

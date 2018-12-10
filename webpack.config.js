@@ -1,5 +1,7 @@
 const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const Critters = require('critters-webpack-plugin');
 
 module.exports = {
   entry: './src/main.js',
@@ -9,6 +11,12 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './src/index.html',
+      chunksSortMode: 'none'
+    }),
+    new Critters(),
     new CompressionPlugin()
   ],
   module: {

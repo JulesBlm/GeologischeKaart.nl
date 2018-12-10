@@ -254,10 +254,10 @@ const timescale = (function() {
         timescale.goTo(root);
 
         // Remove the Geologic time abbreviation
-       select(".abbr.levelundefined").remove();
+        select(".abbr.levelundefined").remove();
         
         // Open to Phanerozoic 
-        timescale.goTo("Phanerozoic");
+        timescale.goTo("Phanerozoïcum");
       }); // End PaleoDB json callback
       //attach window resize listener to the window
       select(window).on("resize", timescale.resize);
