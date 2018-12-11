@@ -12,6 +12,24 @@ body {
   left: 0px;
 }
 
+#github {
+  width: 20px;
+  height: 20px;
+  z-index: 1000;
+  position: absolute;
+  right: 5px;
+  bottom: 20px;
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#github:hover {
+  transform: scale(1.3);
+}
+
+#github svg {
+  fill: #000;
+}
+
 .info {
     padding: 20px 30px;
     box-sizing: border-box;
