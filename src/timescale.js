@@ -19,8 +19,6 @@ const timescale = (function() {
     });
   };
 
-
-
   // Via https://stackoverflow.com/questions/9133500/how-to-find-a-node-in-a-tree-with-javascript
   function searchTree(node, property, match){
     if (property === "nam" || "oid" || "mid" || "lag" || "") {
@@ -39,7 +37,7 @@ const timescale = (function() {
     }
   }
 
-  const width = window.innerWidth - 4;
+  let width = window.innerWidth - 4;
   const height = 130;
 
   // Initialize data
@@ -86,29 +84,29 @@ const timescale = (function() {
       let transformStart;
       let dragStart;
 
-      const dragFunc = drag()
-        .subject(function() { 
-          // const t = select(".timescale g");
-          return {x: newX, y: 0};
-        })
-        .on("start", function() {
-          dragStart = event.pageX;
-          console.log("timescale > g", select(".timescale").select("g"))
-          console.log("attr transform", select(".timescale").select("g").attr("transform")) // Only show a scale transform no translate
-          transformStart = getTransformation(select(".timescale").select("g").attr("transform"));
-          console.log({transformStart})
-          event.sourceEvent.stopPropagation();
-        })
-        .on("drag", function() {
-        	const currentDrag = event.pageX;
+      // const dragFunc = drag()
+      //   .subject(function() { 
+      //     // const t = select(".timescale g");
+      //     return {x: newX, y: 0};
+      //   })
+      //   .on("start", function() {
+      //     dragStart = event.pageX;
+      //     // console.log("timescale > g", select(".timescale").select("g"))
+      //     // console.log("attr transform", select(".timescale").select("g").attr("transform")) // Only show a scale transform no translate
+      //     transformStart = getTransformation(select(".timescale").select("g").attr("transform"));
+      //     // console.log({transformStart})
+      //     event.sourceEvent.stopPropagation();
+      //   })
+      //   .on("drag", function() {
+      //   	const currentDrag = event.pageX;
 
-         	newX = (dragStart - currentDrag);
+      //    	newX = (dragStart - currentDrag);
 
-          select(".timescale").select("g")
-            .attr("transform", function() {
-              return `translate(${[ parseInt(transformStart[0] + -newX), 0 ]}) scale(${parseInt(select(".timescale").style("width"))/width})`;
-            });
-        });
+      //     select(".timescale").select("g")
+      //       .attr("transform", function() {
+      //         return `translate(${[ parseInt(transformStart[0] + -newX), 0 ]}) scale(${parseInt(select(".timescale").style("width"))/width})`;
+      //       });
+      //   });
       
       // Add class timescale to whatever div was supplied
      select("#" + div).attr("class", "timescale");
@@ -117,13 +115,13 @@ const timescale = (function() {
       // Create the SVG for the chart
       const time = select("#" + div).append("svg")
           .attr("width", width)
-          .attr("height", height)
+          .attr("height", height + 20)
           .append("g");
 
       // Move whole tick SVG group down 125px
       const scale = time.append("g")
         .attr("id", "tickBar")
-        .attr("transform", "translate(0,125)");
+        .attr("transform", `translate(0,${height-5})`);
 
       // Create a new d3 partition layout
       const partitionFunc = partition()
@@ -147,13 +145,6 @@ const timescale = (function() {
         root = hierarchy(data)
           .sum(d => (d.children.length === 0) ? d.total + 0.117 : 0 ); //? add time for Holocene
 
-        // console.log(
-        //   {result}, 
-        //   {interval_hash},
-        //   {data},   // created hierarchy
-        //   {root}  // d3 hierarchy with Node types
-        //   )
-
         partitionFunc(root);
 
         const rectGroup = time.append("g")
@@ -170,7 +161,7 @@ const timescale = (function() {
             .attr("fill", function(d) { return d.data.col || "#000"; })
             .attr("id", function(d) { return "t" + d.data.oid; })
             .style("opacity", 0.83)
-            .call(dragFunc)
+            // .call(dragFunc)
             .on("click", function(d) { timescale.goTo(d); });
 
         // Scale bar for the bottom of the graph
@@ -183,7 +174,7 @@ const timescale = (function() {
 
         hash.append("line")
           .attr("x1", 0)
-          .attr("y1", 7.5)
+          .attr("y1", 6)
           .attr("x2", 0)
           .attr("y2", 12)
           .style("stroke-width", "0.05em");
@@ -204,7 +195,7 @@ const timescale = (function() {
 
         now.append("line")
           .attr("x1", 0)
-          .attr("y1", 7.5)
+          .attr("y1", 6)
           .attr("x2", 0)
           .attr("y2", 12)
           .style("stroke-width", "0.05em");
@@ -258,12 +249,10 @@ const timescale = (function() {
         
         // Open to Phanerozoic 
         timescale.goTo("Phanerozoïcum");
+        timescale.currentInterval = searchTree(root, "nam", "Phanerozoïcum");
       }); // End PaleoDB json callback
       //attach window resize listener to the window
       select(window).on("resize", timescale.resize);
-
-      // Size time scale to window
-      timescale.resize();
     },
 
     // Calculates x-position for label abbreviations
@@ -419,8 +408,6 @@ const timescale = (function() {
        selectAll('.fullName').filter(d => d.data.nam === parent).transition(t)
           .attr("x", width/2);
       }        
-
-      timescale.resize();
     },
 
     // Highlight a given time interval
@@ -452,13 +439,14 @@ const timescale = (function() {
     },
 
     "resize": function() {
-     select(".timescale g")
-        .attr("transform", function() {
-          return `scale(${parseInt(select(".timescale").style("width"))/width})`;
-        });
+      width = window.innerWidth - 4;
+      
+      select(".timescale svg")
+        .style("width", width)
 
-     select(".timescale svg")
-        .style("width", function() { return select(".timescale").style("width"); })
+      setTimeout(() => {
+        timescale.goTo(timescale.currentInterval.data.nam)
+      }, 600);
     },
 
     /* Interval hash can be exposed publically so that the time scale data can be used 

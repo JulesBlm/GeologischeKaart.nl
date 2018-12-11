@@ -64,7 +64,7 @@ const key = {
     "Ec3": {info:`<a href="https://www.dinoloket.nl/formatie-van-echteld" target="_blank" rel="noopener">Formatie van Echteld</a> / <a href="https://www.dinoloket.nl/formatie-van-nieuwkoop" target="_blank" rel="noopener">Formatie van Nieuwkoop</a> op <a href="https://www.dinoloket.nl/formatie-van-naaldwijk" target="_blank" rel="noopener">Formatie van Naaldwijk</a>; rivierklei en -zand met inschakelingen van veen op zeeklei en -zand`, color:`166,230,191`},
     "Ec4": {info:`<a href="https://www.dinoloket.nl/formatie-van-echteld" target="_blank" rel="noopener">Formatie van Echteld</a> / <a href="https://www.dinoloket.nl/formatie-van-nieuwkoop" target="_blank" rel="noopener">Formatie van Nieuwkoop</a> op <a href="https://www.dinoloket.nl/formatie-van-boxtel" target="_blank" rel="noopener">Formatie van Boxtel</a>; rivierklei en -zand met inschakelingen van veen op zand`, color:`153,204,179`},
     "Ec5": {info:`<a href="https://www.dinoloket.nl/formatie-van-echteld" target="_blank" rel="noopener">Formatie van Echteld</a> op <a href="https://www.dinoloket.nl/formatie-van-boxtel" target="_blank" rel="noopener">Formatie van Boxtel</a>; rivierklei op zand`, color:`140,179,153`},
-    "Ec6": {info:`<a href="https://www.dinoloket.nl/formatie-van-echteld" target="_blank" rel="noopener">Formatie van Echteld</a> op Formatie van Kreftenheye; rivierklei op rivierzand en -grind`, color:`128,153,128`},
+    "Ec6": {info:`<a href="https://www.dinoloket.nl/formatie-van-echteld" target="_blank" rel="noopener">Formatie van Echteld</a> op <a href="https://www.dinoloket.nl/formatie-van-kreftenheye" target="_blank" rel="noopener">Formatie van Kreftenheye</a>; rivierklei op rivierzand en -grind`, color:`128,153,128`},
     "Ec7": {info:`<a href="https://www.dinoloket.nl/formatie-van-echteld" target="_blank" rel="noopener">Formatie van Echteld</a> op <a href="https://www.dinoloket.nl/formatie-van-beegden" target="_blank" rel="noopener">Formatie van Beegden</a>; rivierklei op rivierzand en -grind`, color:`255,255,140`},
     "Bx1": {info:`<a href="https://www.dinoloket.nl/formatie-van-boxtel" target="_blank" rel="noopener">Laagpakket van Kootwijk</a>; stuifzand`, color:`204,191,77`},
     "Bx2": {info:`<a href="https://www.dinoloket.nl/formatie-van-boxtel" target="_blank" rel="noopener">Laagpakket van Singraven</a>; beekzand en -leem`, color:`153,153,77`},
@@ -80,13 +80,13 @@ const key = {
     "Be3": {info:`<a href="https://www.dinoloket.nl/formatie-van-beegden" target="_blank" rel="noopener">Formatie van Beegden</a>; rivierzand en -grind`, color:`115,166,255`},
     "Be4": {info:`<a href="https://www.dinoloket.nl/formatie-van-beegden" target="_blank" rel="noopener">Formatie van Beegden</a> veelal met een dek van de <a href="https://www.dinoloket.nl/formatie-van-boxtel" target="_blank" rel="noopener">Formatie van Boxtel</a>, <a href="https://www.dinoloket.nl/formatie-van-boxtel" target="_blank" rel="noopener">Laagpakket van Wierden</a>; rivierzand en -grind veelal met een zanddek`, color:`89,140,255`},
     "Be5": {info:`<a href="https://www.dinoloket.nl/formatie-van-beegden" target="_blank" rel="noopener">Formatie van Beegden</a> met een dek van de <a href="https://www.dinoloket.nl/formatie-van-boxtel" target="_blank" rel="noopener">Formatie van Boxtel</a>, <a href="https://www.dinoloket.nl/formatie-van-boxtel" target="_blank" rel="noopener">Laagpakket van Schimmert</a>; rivierzand en -grind met een dek van leem`, color:`204,217,230`},
-    "Kr1": {info:`Formatie van Kreftenheye; rivierzand en -grind`, color:`166,191,230`},
+    "Kr1": {info:`<a href="https://www.dinoloket.nl/formatie-van-kreftenheye" target="_blank" rel="noopener">Formatie van Kreftenheye</a>; rivierzand en -grind`, color:`166,191,230`},
     "Kr2": {info:`Laagpakket van Well met een dek van de <a href="https://www.dinoloket.nl/formatie-van-beegden" target="_blank" rel="noopener">Formatie van Beegden</a>; rivierzand en -grind met een dun dek van zand en klei`,color:`255,204,204`},
     "Dr1": {info:`<a href="https://www.dinoloket.nl/formatie-van-drente" target="_blank" rel="noopener">Laagpakket van Gieten</a>; grondmorene (zandige en grindige leem, keileem)`,color:`255,140,204`},
     "Dr2": {info:`<a href="https://www.dinoloket.nl/formatie-van-drente" target="_blank" rel="noopener">Laagpakket van Gieten</a> met een dek van de <a href="https://www.dinoloket.nl/formatie-van-boxtel" target="_blank" rel="noopener">Formatie van Boxtel</a>, <a href="https://www.dinoloket.nl/formatie-van-boxtel" target="_blank" rel="noopener">Laagpakket van Wierden</a>; grondmorene met een zanddek`,color:`255,179,204`},
     "Dr3": {info:`<a href="https://www.dinoloket.nl/formatie-van-drente" target="_blank" rel="noopener">Laagpakket van Gieten</a> op gestuwde afzettingen; grondmorene op gestuwd zand en grind`,color:`255,77,204`},
     "Dr4": {info:`<a href="https://www.dinoloket.nl/formatie-van-drente" target="_blank" rel="noopener">Laagpakket van Gieten</a> en oudere gestuwde afzettingen; grondmorene en oudere gestuwde afzettingen`,color:`191,153,179`},
-    "Dr5": {info:`Laagpakket van Schaarsbergen; glaciofluviale afzettingen (grof zand en grind)`,color:`230,153,25`},
+    "Dr5": {info:`<a href="https://www.dinoloket.nl/formatie-van-drente" target="_blank" rel="noopener">Laagpakket van Schaarsbergen</a>; glaciofluviale afzettingen (grof zand en grind)`,color:`230,153,25`},
     "Dn1": {info:`<a href="https://www.dinoloket.nl/formatie-van-drachten" target="_blank" rel="noopener">Formatie van Drachten</a> met een dek van de Fm. van Boxtel, <a href="https://www.dinoloket.nl/formatie-van-boxtel" target="_blank" rel="noopener">Laagpakket van Wierden</a>; fluvioperiglaciale afzettingen (leem en zand) met een zanddek`,color:`0,255,204`},
     "Ur1": {info:`Laagpakket van Lingsfort; rivierzand en -grind`,color:`230,242,204`},
     "Pe1": {info:`<a href="https://www.dinoloket.nl/formatie-van-peelo" target="_blank" rel="noopener">Formatie van Peelo</a>; glaciofluviale afzettingen (grof tot fijn zand) en glaciolacustriene afzettingen (zwak siltige klei}, potklei)`,color:`166,179,217`},
@@ -209,6 +209,7 @@ fetch("jsons/geologieNL.topojson").then(function(response) {
                 }).on("click", function(e) {
                     click(e);
                 }).on(`mouseout`, function(e) {
+                    if (!clicked) info.update()
                     if (e.layer.properties.id !== clickedFeature) geomapVector.resetFeatureStyle(e.layer.properties.id);
                 }).on(`touchend`, function(e) {
                     if (e.layer.properties.id !== clickedFeature) geomapVector.resetFeatureStyle(e.layer.properties.id);
@@ -217,7 +218,7 @@ fetch("jsons/geologieNL.topojson").then(function(response) {
 
 var info = L.control();
 
-info.onAdd = function (map) {
+info.onAdd = function(map) {
     this._div = L.DomUtil.create("div", "info");
     this.update();
     return this._div;
@@ -235,7 +236,7 @@ map.attributionControl.addAttribution("Geologische Kaart &copy; <a href='https:/
 let timescaleShown = false;
 let timescale; // So when a feature is clicked it can acces timescale function, scope
 
-// On click of show timescale button lazy load timescale js and initialize
+// On click of show timescale button lazy load timescale.js and initialize it
 document.querySelector("#showgeotimescale").onclick = (e) => {
     return import(/* webpackChunkName: "timescale" */ './timescale').then(module => {
         timescale = module.default;
@@ -254,11 +255,3 @@ document.querySelector("#showgeotimescale").onclick = (e) => {
         timescaleShown = !timescaleShown;
     }).catch(error => 'An error occurred while loading the component');
 };
-
-window.addEventListener("resize", function(e) {
-    if (timescaleDrawn) {
-        setTimeout(function() {
-            console.log("Resize that mf timescale by transitioning the whole damn thing")
-        }, 1500);
-    };
-});
