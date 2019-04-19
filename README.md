@@ -3,8 +3,8 @@ Interactive geologic map of the Netherlands using TNO data.
 
 ## To do list
 
+1. Decrease bundle size
+2. Decrease topoJSON size
 2. Fix dragging in geotimescale
-4. Add all formation links
-5. Async query formation data
-7. Bundle CSS/inline render-blocking css
+7. Bundle CSS/inline render-blocking css / get critters working againg
 9. Webpack-dev-server sure is finicky

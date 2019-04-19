@@ -1,7 +1,9 @@
+const webpack = require('webpack');
 const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const Critters = require('critters-webpack-plugin');
+require('dotenv').config();
 
 module.exports = {
   entry: './src/main.js',
@@ -11,7 +13,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   node: {
-    fs: 'empty'
+    fs: 'empty',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -19,6 +21,10 @@ module.exports = {
       template: './src/index.html',
       chunksSortMode: 'none',
     }),
+    new webpack.DefinePlugin({
+      MAPBOX_ACCESS_TOKEN: JSON.stringify(process.env.MAPBOX_ACCESS_TOKEN),
+    }),
+    // new BundleAnalyzerPlugin(),
     // new Critters(),
     new CompressionPlugin(),
   ],
