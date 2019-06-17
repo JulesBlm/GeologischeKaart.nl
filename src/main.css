@@ -52,6 +52,7 @@ body {
 }
 
 #showgeotimescale {
+  transform-origin: center;
   position: absolute;
   bottom: -3px;
   font-size: 1.5rem;
@@ -72,16 +73,16 @@ body {
 
 @media screen and (max-width: 750px) {
   #showgeotimescale {
-    bottom: 85px;
-    left: -45px;
+    bottom: 0px;
+    left: -60px;
     transform: rotate(90deg);
     writing-mode: vertical-rl;
     text-orientation: mixed;
   }
 
   #showgeotimescale:hover {
-    bottom: 85px;
-    left: -45px;
+    bottom: 0px;
+    left: -60px;
     transform: rotate(90deg) scale(1.05);
     background: #F6F6F6;
   }
