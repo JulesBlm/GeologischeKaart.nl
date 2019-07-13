@@ -3,7 +3,8 @@ import { feature } from "topojson-client";
 import {} from "leaflet.vectorgrid/dist/Leaflet.VectorGrid.bundled.js"
 
 import key from "./key"
-
+import './main.css';
+// import 'leaflet/dist/leaflet.css';
 /*
 Todo list
 - import leaflet css bundle and minify css with webpack

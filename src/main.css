@@ -3,7 +3,7 @@ body {
 }
 
 #mapid { 
-  height: 100vh;
+  height: 100%;
   position: relative;
  }
 
@@ -52,7 +52,7 @@ body {
 }
 
 #showgeotimescale {
-  transform-origin: center;
+  transform-origin: top left;
   position: absolute;
   bottom: -3px;
   font-size: 1.5rem;
@@ -73,18 +73,11 @@ body {
 
 @media screen and (max-width: 750px) {
   #showgeotimescale {
-    bottom: 0px;
-    left: -60px;
+    transform-origin: bottom left;
+    bottom: 120px !important;
+    left: -60px !important;
     transform: rotate(90deg);
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-  }
-
-  #showgeotimescale:hover {
-    bottom: 0px;
-    left: -60px;
-    transform: rotate(90deg) scale(1.05);
-    background: #F6F6F6;
+    /* text-orientation: mixed; */
   }
 
   .info {
