@@ -26,7 +26,7 @@
     "d3-ease": "^1.0.5",
     "d3-fetch": "^1.1.2",
     "d3-hierarchy": "^1.1.8",
-    "d3-scale": "^3.0.0",
+    "d3-scale": "^3.0.1",
     "d3-selection": "^1.4.0",
     "d3-transition": "^1.2.0",
     "geojson-vt": "^3.2.1",
@@ -37,17 +37,17 @@
   },
   "devDependencies": {
     "compression-webpack-plugin": "^3.0.0",
-    "critters-webpack-plugin": "^2.3.0",
-    "css-loader": "^3.0.0",
-    "dotenv": "^7.0.0",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.2.0",
-    "eslint-plugin-import": "^2.18.0",
-    "gh-pages": "^2.0.1",
+    "critters-webpack-plugin": "^2.4.0",
+    "css-loader": "^3.2.0",
+    "dotenv": "^8.1.0",
+    "eslint": "^6.2.2",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "gh-pages": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.35.3",
-    "webpack-cli": "^3.3.5",
-    "webpack-dev-server": "^3.7.2"
+    "style-loader": "^1.0.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
   }
 }

@@ -8,12 +8,20 @@ require('dotenv').config();
 module.exports = {
   entry: './src/main.js',
   output: {
+    path: path.resolve(__dirname, 'dist'),
     filename: 'js/bundle.js',
     chunkFilename: 'js/[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
   },
   node: {
     fs: 'empty',
+  },
+  devtool: 'source-map',
+  devServer: {
+    host: '0.0.0.0',
+    hot: true,
+    contentBase: path.resolve(__dirname, 'dist'),
+    watchContentBase: true,
+    port: 8080,
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -22,7 +30,7 @@ module.exports = {
       chunksSortMode: 'none',
     }),
     new webpack.DefinePlugin({
-      MAPBOX_ACCESS_TOKEN: JSON.stringify(process.env.MAPBOX_ACCESS_TOKEN),
+      MAPBOX_ACCESS_TOKEN: JSON.stringify(process.env.REACT_APP_MAPBOX_ACCESS_TOKEN),
     }),
     // new BundleAnalyzerPlugin(),
     // new Critters(),
@@ -47,18 +55,6 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
           'file-loader',
-        ],
-      },
-      {
-        test: /\.(csv|tsv)$/,
-        use: [
-          'csv-loader',
-        ],
-      },
-      {
-        test: /\.xml$/,
-        use: [
-          'xml-loader',
         ],
       },
     ],
