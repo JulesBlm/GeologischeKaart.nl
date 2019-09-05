@@ -119,24 +119,22 @@ fetch("jsons/geologieNL.topojson").then(function(response) {
                     }
                 },
                 interactive: true,
-                getFeatureId: function(f) {
-                    return f.properties.id;
-                }
-                }).on(`mouseover`, function(e) {
+                getFeatureId: (f) => f.properties.id
+                }).on(`mouseover`, e => {
                     hover(e);
-                }).on(`touchstart`, function(e) {
+                }).on(`touchstart`, e => {
                     hover(e);
-                }).on("click", function(e) {
+                }).on("click", e => {
                     click(e);
-                }).on(`mouseout`, function(e) {
+                }).on(`mouseout`, e => {
                     if (!clicked) info.update()
                     if (e.layer.properties.id !== clickedFeature) geomapVector.resetFeatureStyle(e.layer.properties.id);
-                }).on(`touchend`, function(e) {
+                }).on(`touchend`, e => {
                     if (e.layer.properties.id !== clickedFeature) geomapVector.resetFeatureStyle(e.layer.properties.id);
                 }).addTo(map);
 })
 
-var info = L.control();
+const info = L.control();
 
 info.onAdd = function(map) {
     this._div = L.DomUtil.create("div", "info");
@@ -145,7 +143,7 @@ info.onAdd = function(map) {
 };
 
 info.update = function (props) {
-    this._div.innerHTML = `<h4>Formatie</h4> <br /> ${props ? `<strong>${props.CHRONO_PER} ${props.CHRONO_EPO}</strong> <p> ${key[props.KRTCODE].info}</p>` : "Beweeg je muis over een formatie, klik er op om deze vast te zetten"}`
+    this._div.innerHTML = `<h4>Formatie</h4> <br /> ${props ? `<strong>${props.CHRONO_PER} ${props.CHRONO_EPO}</strong> <p> ${key[props.KRTCODE].info}</p>` : "Beweeg je muis over een formatie, klik er op om deze vast te zetten. Klik op Tijdschaal onderin om een geologische tijdschaal te vertonen."}`
 };
 
 info.addTo(map);
@@ -170,7 +168,7 @@ document.querySelector("#showgeotimescale").onclick = (e) => {
         
         if (!timescaleShown) {
             ghIcon.style.cssText = "bottom: 170px";
-            leafletMap.style.cssText = "height: calc(100vh - 156px)";
+            leafletMap.style.cssText = "height: calc(100vh - 160px)";
         } else {
             leafletMap.style.cssText = "height: 100vh;";
             ghIcon.style.cssText = "bottom: 20px";

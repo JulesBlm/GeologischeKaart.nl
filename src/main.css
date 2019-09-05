@@ -3,7 +3,7 @@ body {
 }
 
 #mapid { 
-  height: 100%;
+  height: 100vh;
   position: relative;
  }
 
@@ -63,21 +63,31 @@ body {
   border-radius: 3px;
   z-index: 1000;
   transition: all 100ms ease-in-out;
+  cursor: pointer;
 }
 
 #showgeotimescale:hover {
   bottom: -2px;
   transform: scale(1.05);
   background: #F6F6F6;
+  box-shadow: 0 0 35px 2px rgba(0,0,0,.24);
 }
 
 @media screen and (max-width: 750px) {
   #showgeotimescale {
     transform-origin: bottom left;
-    bottom: 120px !important;
-    left: -60px !important;
+    bottom: 35% !important;
+    left: 0px !important;
     transform: rotate(90deg);
-    /* text-orientation: mixed; */
+    direction: ltr;
+  }
+
+  #showgeotimescale:hover {
+    bottom: 30% !important;
+    left: 0px !important;
+    transform: scale(1.05);
+    background: #F6F6F6;
+    box-shadow: 0 0 35px 2px rgba(0,0,0,.24);
   }
 
   .info {
@@ -86,7 +96,6 @@ body {
     font: 14px/16px Arial, Helvetica, sans-serif;
   }
 }
-  
 
 #showgeotimescale:active {
   outline: none;
@@ -99,7 +108,7 @@ body {
     font-size: 0.8em;
     color:#333;
     cursor: pointer;
-    }
+  }
 
 rect {
   stroke: #fff;
