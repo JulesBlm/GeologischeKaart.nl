@@ -5,33 +5,6 @@ import {} from "leaflet.vectorgrid/dist/Leaflet.VectorGrid.bundled.js"
 import key from "./key"
 import './main.css';
 // import 'leaflet/dist/leaflet.css';
-/*
-Todo list
-- import leaflet css bundle and minify css with webpack
-- RIGHT COLORS?!
-- Resize timescale on window resize
-- Add link to grondwatertools geologische overzichtskaart
-
-LATER
-- Iets beters dan GeoJSON verzinnen?
-- Show relief or option for satellite background?
-- Op zoom getailleerdere kaart laden
-
-- MAKE file voor die facking ArcGis naar GeoJSON met kleur etc of zieke oneliner
-    1. ogr2ogr shp to geojson
-    2. geojson-pick KRTCODE LAND CHRONO_PER CHRONO_EPO < origininelli.geojson > clean.geojson
-    3. geojson-join --format=csv     colors.csv     --againstField=CODE_ATLAS     --geojsonField=CODE_ATLAS < geologieNL.json> merged.json
-    4. geo2topo
-
-1. Only pick properties we will use in geoJSON
-2. Convert to TopoJSON
-    geo2topo 
-
-- Update to 2018 map when available
-- Links to DinoLoket for formation descriptions
-- Geologie van Zuid-Limburg Fly-to Tour
-    - Berendsen 2008 -> potrace to geojson -> to mooi formaat
-*/
 
 let timescaleDrawn = false;
 
@@ -58,8 +31,8 @@ fetch("jsons/geologieNL.topojson").then(function(response) {
     let clicked = false;
     let clickedFeature;
     
-    function click(e) {
-        const properties = e.layer.properties;
+    function click({layer}) {
+        const {properties} = layer;
         geomapVector.resetFeatureStyle(clickedFeature);
         if (clicked) {
             clickedFeature = undefined;
@@ -80,12 +53,13 @@ fetch("jsons/geologieNL.topojson").then(function(response) {
         };
         geomapVector.setFeatureStyle(properties.id, style);
         info.update(properties);
-        if (timescaleDrawn) timescale.goTo(properties.CHRONO_EPO)
+        if (timescaleDrawn) timescale.goToName(properties.period)
     }
 
-    function hover(e) {
-        const properties = e.layer.properties;
+    function hover({layer}) {
+        const { properties } = layer;
     
+        // Move out of this function
         const style = {
             stroke: true,
             weight: 2,
@@ -97,9 +71,7 @@ fetch("jsons/geologieNL.topojson").then(function(response) {
     
         if (properties.id !== clickedFeature) geomapVector.setFeatureStyle(properties.id, style);
     
-        e.layer.bringToFront();
-        // if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-        // }
+        layer.bringToFront();
     
         if (!clicked) { info.update(properties); }
     }
@@ -113,7 +85,7 @@ fetch("jsons/geologieNL.topojson").then(function(response) {
                             opacity: 0.9,
                             color: `#333`,
                             fill: true,
-                            fillColor: `rgb(${key[properties.KRTCODE].color})`,
+                            fillColor: `rgb(${key[properties.mapCode].color})`,
                             fillOpacity: 0.8
                         }
                     }
@@ -143,7 +115,7 @@ info.onAdd = function(map) {
 };
 
 info.update = function (props) {
-    this._div.innerHTML = `<h4>Formatie</h4> <br /> ${props ? `<strong>${props.CHRONO_PER} ${props.CHRONO_EPO}</strong> <p> ${key[props.KRTCODE].info}</p>` : "Beweeg je muis over een formatie, klik er op om deze vast te zetten. Klik op Tijdschaal onderin om een geologische tijdschaal te vertonen."}`
+    this._div.innerHTML = `<h4>Formatie</h4> <br /> ${props ? `<strong>${props.period} ${props.period}</strong> <p> ${key[props.mapCode].info}</p>` : "Beweeg je muis over een formatie, klik er op om deze vast te zetten. Klik op Tijdschaal onderin om een geologische tijdschaal te vertonen."}`
 };
 
 info.addTo(map);
@@ -158,7 +130,7 @@ let timescale; // So when a feature is clicked it can acces timescale function, 
 document.querySelector("#showgeotimescale").onclick = (e) => {
     return import(/* webpackChunkName: "timescale" */ './timescale').then(module => {
         timescale = module.default;
-        
+        console.log("Show timescale")
         const leafletMap = document.querySelector("#mapid");
         const ghIcon = document.querySelector("#github");
         if (!timescaleDrawn) {
@@ -167,8 +139,8 @@ document.querySelector("#showgeotimescale").onclick = (e) => {
         }    
         
         if (!timescaleShown) {
-            ghIcon.style.cssText = "bottom: 170px";
-            leafletMap.style.cssText = "height: calc(100vh - 160px)";
+            ghIcon.style.cssText = "bottom: 180px";
+            leafletMap.style.cssText = "height: calc(100vh - 170px)";
         } else {
             leafletMap.style.cssText = "height: 100vh;";
             ghIcon.style.cssText = "bottom: 20px";

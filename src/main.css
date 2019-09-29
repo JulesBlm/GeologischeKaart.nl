@@ -73,6 +73,7 @@ body {
   box-shadow: 0 0 35px 2px rgba(0,0,0,.24);
 }
 
+
 @media screen and (max-width: 750px) {
   #showgeotimescale {
     transform-origin: bottom left;
@@ -95,10 +96,13 @@ body {
     width: 200px;
     font: 14px/16px Arial, Helvetica, sans-serif;
   }
-}
 
-#showgeotimescale:active {
-  outline: none;
+  #showgeotimescale:active {
+    bottom: 30% !important;
+    left: 0px !important;
+    transform: scale(1.05);  
+    outline: none;
+  }  
 }
 
 /* geo-timescale */
