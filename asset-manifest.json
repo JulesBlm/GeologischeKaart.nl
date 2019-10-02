@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.11fddcaa.chunk.css",
-    "main.js": "/static/js/main.c1bd0e31.chunk.js",
-    "main.js.map": "/static/js/main.c1bd0e31.chunk.js.map",
+    "main.css": "/static/css/main.df4ae1ff.chunk.css",
+    "main.js": "/static/js/main.2348a8f2.chunk.js",
+    "main.js.map": "/static/js/main.2348a8f2.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.3f72a1c0.js",
     "runtime-main.js.map": "/static/js/runtime-main.3f72a1c0.js.map",
     "static/js/2.8645a535.chunk.js": "/static/js/2.8645a535.chunk.js",
     "static/js/2.8645a535.chunk.js.map": "/static/js/2.8645a535.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.0f96ba037192733d20b937ed9eff83f4.js": "/precache-manifest.0f96ba037192733d20b937ed9eff83f4.js",
+    "precache-manifest.5c19db6963c69208a419e8d4e1ee13c1.js": "/precache-manifest.5c19db6963c69208a419e8d4e1ee13c1.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.11fddcaa.chunk.css.map": "/static/css/main.11fddcaa.chunk.css.map",
+    "static/css/main.df4ae1ff.chunk.css.map": "/static/css/main.df4ae1ff.chunk.css.map",
     "static/media/geologielimburg.geojson": "/static/media/geologielimburg.0f7fe2f6.geojson"
   }
 }
