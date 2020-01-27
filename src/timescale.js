@@ -31,7 +31,7 @@ const timescale = (function () {
       }
       return null;
     } else {
-      console.warn("Property can't be used to search");
+      console.warn('Property can\'t be used to search');
     }
   }
 
@@ -53,25 +53,25 @@ const timescale = (function () {
 
       const dragFunc = drag()
         .subject(function() {
-          // const t = select(".timescale g");
+          // const t = select('.timescale g');
           return {x: newX, y: 0};
         })
-        .on("start", function() {
+        .on('start', function() {
           dragStart = event.pageX;
-          // console.log("timescale > g", select(".timescale").select("g"))
-          // console.log("attr transform", select(".timescale").select("g").attr("transform")) // Only show a scale transform no translate
-          transformStart = getTransformation(select(".timescale").select("g").attr("transform"));
+          // console.log('timescale > g', select('.timescale').select('g'))
+          // console.log('attr transform', select('.timescale').select('g').attr('transform')) // Only show a scale transform no translate
+          transformStart = getTransformation(select('.timescale').select('g').attr('transform'));
           // console.log({transformStart})
           event.sourceEvent.stopPropagation();
         })
-        .on("drag", function() {
+        .on('drag', function() {
         	const currentDrag = event.pageX;
 
          	newX = (dragStart - currentDrag);
 
-          select(".timescale").select("g")
-            .attr("transform", function() {
-              return `translate(${[ parseInt(transformStart[0] + -newX), 0 ]}) scale(${parseInt(select(".timescale").style("width"))/width})`;
+          select('.timescale').select('g')
+            .attr('transform', function() {
+              return `translate(${[ parseInt(transformStart[0] + -newX), 0 ]}) scale(${parseInt(select('.timescale').style('width'))/width})`;
             });
         }); */
 
@@ -340,9 +340,12 @@ const timescale = (function () {
     resize() {
       width = window.innerWidth - 4;
 
-      select('.timescale svg')
-        .style('width', width);
+      select('.timescale g')
+        .attr('transform', () => `scale(${parseInt(select('.timescale').style('width'))/961}`);
 
+      select('.timescale svg')
+        .style('width', () => select('.timescale').style('width'))
+        .style('height', () => `${parseInt(select('.timescale').style('width')) * 0.25}px`);
     },
   };
 }());
