@@ -37,7 +37,7 @@
     "topojson-client": "^3.1.0"
   },
   "devDependencies": {
-    "compression-webpack-plugin": "^4.0.0",
+    "compression-webpack-plugin": "^6.0.4",
     "critters-webpack-plugin": "^2.5.0",
     "css-loader": "^3.6.0",
     "dotenv": "^8.2.0",
