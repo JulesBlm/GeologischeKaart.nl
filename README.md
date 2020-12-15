@@ -1,6 +1,8 @@
 # GeologischeKaart.nl
 Interactive geological map of the Netherlands using TNO data.
 
+Interactieve geoloische kaart van Nederland met data van de Geologische Dienst.
+
 ## To do list
 
 1. Separate timescale to seperate NPM module.
