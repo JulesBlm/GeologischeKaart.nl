@@ -1,54 +1,30 @@
 {
   "name": "geologischekaart.nl",
-  "version": "1.0.8",
+  "version": "2.0.0",
   "description": "Leaflet.js geologische kaart van Nederland",
-  "main": "main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --keep-fnames -p --progress --display-error-details",
-    "start": "webpack-dev-server -d --host 0.0.0.0",
-    "dev": "npm run start",
-    "deploy": "gh-pages -d dist"
+  "source": "src/index.html",
+  "author": "Jules Blom",
+  "license": "ISC",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "bugs": {
+    "url": "https://github.com/JulesBlm/GeologischeKaart.nl/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JulesBlm/GeologischeKaart.nl.git"
   },
-  "keywords": [
-    "geologie"
-  ],
-  "author": "Jules Blom",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JulesBlm/GeologischeKaart.nl/issues"
-  },
   "homepage": "https://github.com/JulesBlm/GeologischeKaart.nl#readme",
-  "dependencies": {
-    "d3-ease": "^1.0.6",
-    "d3-fetch": "^1.2.0",
-    "d3-hierarchy": "^1.1.9",
-    "d3-scale": "^3.2.1",
-    "d3-selection": "^1.4.2",
-    "d3-transition": "^1.3.2",
-    "geojson-vt": "^3.2.1",
-    "leaflet": "^1.6.0",
-    "leaflet.vectorgrid": "^1.3.0",
-    "topojson": "^3.0.2",
-    "topojson-client": "^3.1.0"
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
   },
   "devDependencies": {
-    "compression-webpack-plugin": "^4.0.0",
-    "critters-webpack-plugin": "^2.5.0",
-    "css-loader": "^3.6.0",
-    "dotenv": "^8.2.0",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.2",
-    "gh-pages": "^3.2.3",
-    "html-webpack-plugin": "^3.2.0",
-    "style-loader": "^1.2.1",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.11.0"
+    "parcel": "^2.9.3"
+  },
+  "dependencies": {
+    "d3-array": "^3.2.4",
+    "leaflet": "^1.9.4",
+    "leaflet.vectorgrid": "^1.3.0",
+    "topojson-client": "^3.1.0"
   }
 }

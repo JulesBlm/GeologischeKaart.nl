@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+}
+
+#mapid {
+  height: 100vh;
+}
+
+.strong {
+  font-weight: 600;
+}
+
+.info {
+  box-sizing: border-box;
+  padding: 12px 24px;
+  box-sizing: border-box;
+  width: 400px;
+  font: 16px/18px Arial, Helvetica, sans-serif;
+  background: hsl(0deg 0% 100% / 70%);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.leaflet-interactive {
+  transition: fill 100ms ease;
+}
+
+@media screen and (max-width: 750px) {
+  .info {
+    padding: 15px 20px;
+    width: 200px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+  }
+}
