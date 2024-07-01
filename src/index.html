@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html lang="nl">
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Overzichts geologische kaart van Nederland. Data afkomstig van Geologische Dienst Nederland, onderdeel van TNO">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="description"
+      content="Overzichts geologische kaart van Nederland. Data afkomstig van Geologische Dienst Nederland, onderdeel van TNO"
+    />
 
     <title>Geologische Kaart van Nederland</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" sizes="192x192"  href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon.png" />
     <link rel="stylesheet" href="styles.css" />
     <script type="module" src="app.js"></script>
-    <script defer data-domain="geologischekaart.nl" src="https://plausible.io/js/script.js"></script>
-
+    <script id="init-counterscale">
+      (function () {
+        window.counterscale = {
+          q: [["set", "siteId", "geologischekaart.nl"], ["trackPageview"]],
+        };
+      })();
+    </script>
+    <script
+      id="counterscale-script"
+      src="https://counterscale.julesb.workers.dev/tracker.js"
+      defer
+    ></script>
   </head>
   <body>
-    <div id="mapid">
+    <div id="mapid"></div>
   </body>
 </html>
