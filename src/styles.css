@@ -1,9 +1,54 @@
-body {
+* {
   margin: 0;
 }
 
-#mapid {
-  height: 100vh;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/* Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+h1 {
+  /* margin-bottom: 8px; */
+}
+
+h2 {
+  margin-bottom: 8px;
+}
+
+html,
+body,
+#map {
+  height: 100%;
 }
 
 .strong {
@@ -11,25 +56,132 @@ body {
 }
 
 .info {
-  box-sizing: border-box;
-  padding: 12px 24px;
-  box-sizing: border-box;
-  width: 400px;
-  font: 16px/18px Arial, Helvetica, sans-serif;
-  background: hsl(0deg 0% 100% / 70%);
+  padding: 22px;
+  width: 380px;
+  min-height: 200px;
+  font: 16px/18px;
+  background: oklch(100% 0.00011 271.152 / 0.7);
   backdrop-filter: blur(2px);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 15px oklch(0% 0 0 / 0.2);
   border-radius: 4px;
+  overflow: hidden;
 }
 
 .leaflet-interactive {
-  transition: fill 100ms ease;
+  transition: fill 80ms ease;
+}
+
+.search-control {
+  background: oklch(100% 0.00011 271.152 / 0.7);
+  backdrop-filter: blur(2px);
+  padding: 8px;
+  border-radius: 4px;
+  box-shadow: 0 0 15px oklch(0% 0 0 / 0.2);
+  margin-bottom: 10px;
+}
+
+.search-control input {
+  width: 200px;
+  padding: 6px 10px;
+  border: 1px solid oklch(0% 0 0 / 0.2);
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+#search-results {
+  display: none;
+  margin-top: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px oklch(0% 0 0 / 0.15);
+}
+
+.search-result-item {
+  padding: 8px 10px;
+  cursor: pointer;
+  border-bottom: 1px solid oklch(0% 0 0 / 0.1);
+  font-size: 13px;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background: oklch(96% 0 0);
+}
+
+.layer-control {
+  background: oklch(100% 0.00011 271.152 / 0.7);
+  backdrop-filter: blur(2px);
+  padding: 12px;
+  border-radius: 4px;
+  box-shadow: 0 0 15px oklch(0% 0 0 / 0.2);
+  font: 14px/16px Arial, Helvetica, sans-serif;
+}
+
+.layer-control-section {
+  margin-bottom: 12px;
+}
+
+.layer-control-section:last-child {
+  margin-bottom: 0;
+}
+
+.layer-control h3 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.layer-control label {
+  display: block;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+.layer-control input[type="radio"],
+.layer-control input[type="checkbox"] {
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+.layer-control input[type="range"] {
+  width: 100%;
+  margin-top: 4px;
 }
 
 @media screen and (max-width: 750px) {
-  .info {
-    padding: 15px 20px;
-    width: 200px;
-    font: 14px/16px Arial, Helvetica, sans-serif;
+  .leaflet-top.leaflet-right .info {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    width: 100%;
+    min-height: auto;
+    padding: 16px;
+    font-size: 14px;
+    border-radius: 0;
+    margin: 0;
   }
+}
+
+#credits {
+  background: oklch(100% 0.00011 271.152 / 0.7);
+  backdrop-filter: blur(2px);
+  position: fixed;
+  z-index: 1000;
+  right: 200px;
+  bottom: 0;
+  font-size: 8px;
+  padding: 4px 8px;
+  border-radius: 4px 0 0 0;
+}
+
+ul {
+  margin-block-start: 1em;
+  padding-inline-start: 1em;
 }

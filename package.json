@@ -1,9 +1,12 @@
 {
   "name": "geologischekaart.nl",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Leaflet.js geologische kaart van Nederland",
   "source": "src/index.html",
-  "author": "Jules Blom",
+  "author": {
+    "name": "Jules Blom",
+    "url": "https://bedrock.engineer"
+  },
   "license": "ISC",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "bugs": {
@@ -19,7 +22,7 @@
     "build": "parcel build"
   },
   "devDependencies": {
-    "parcel": "^2.9.3"
+    "parcel": "^2.16.1"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

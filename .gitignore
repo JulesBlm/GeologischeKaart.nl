@@ -1,7 +1,6 @@
 node_modules
 .env
-OUD
 .vscode
 .parcel-cache
-distold
+dist
 .DS_Store

@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="Jules Blom @ Bedrock.engineer" />
     <meta
       name="description"
       content="Overzichts geologische kaart van Nederland. Data afkomstig van Geologische Dienst Nederland, onderdeel van TNO"
@@ -10,7 +11,25 @@
 
     <title>Geologische Kaart van Nederland</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://geologischekaart.nl/" />
+    <meta property="og:title" content="Geologische Kaart van Nederland" />
+    <meta property="og:description" content="Overzichts geologische kaart van Nederland. Data afkomstig van Geologische Dienst Nederland." />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://geologischekaart.nl/" />
+    <meta property="twitter:title" content="Geologische Kaart van Nederland" />
+    <meta property="twitter:description" content="Overzichts geologische kaart van Nederland. Data afkomstig van Geologische Dienst Nederland." />
+
     <link rel="icon" type="image/png" sizes="192x192" href="favicon.png" />
+
+    <!-- Preconnect to tile providers -->
+    <link rel="preconnect" href="https://tile.openstreetmap.org" />
+    <link rel="preconnect" href="https://server.arcgisonline.com" />
+
     <link rel="stylesheet" href="styles.css" />
     <script type="module" src="app.js"></script>
     <script id="init-counterscale">
@@ -27,6 +46,10 @@
     ></script>
   </head>
   <body>
-    <div id="mapid"></div>
+    <div id="map"></div>
+    <div id="credits">
+      <a href="https://julesblom.com">Jules Blom</a> @ 
+      <a href="https://bedrock.engineer">Bedrock</a>
+    </div>
   </body>
 </html>
