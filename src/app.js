@@ -81,8 +81,8 @@ info.update = function (props) {
 
     const dinoloket = "https://www.dinoloket.nl/stratigrafische-nomenclator";
 
-    html += `<h2>${props.LITHOSTRAT}</h2>
-<p><span class='strong'>Ouderdom</span>: ${props.OUDERDOM}</p>
+    html += `<h2>${props.LITHOSTRAT ?? ""}</h2>
+<p><span class='strong'>Ouderdom</span>: ${props.OUDERDOM ?? ""}</p>
 <p>${props.OMSCHRIJVI}</p>
 `;
 
