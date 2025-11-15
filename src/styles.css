@@ -67,6 +67,40 @@ body,
   overflow: hidden;
 }
 
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.info-header h1 {
+  margin: 0;
+}
+
+.info-close-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  color: oklch(0% 0 0 / 0.5);
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.info-close-btn:hover {
+  color: oklch(0% 0 0 / 0.8);
+  background: oklch(0% 0 0 / 0.05);
+}
+
 .leaflet-interactive {
   transition: fill 80ms ease;
 }
@@ -78,14 +112,40 @@ body,
   border-radius: 4px;
   box-shadow: 0 0 15px oklch(0% 0 0 / 0.2);
   margin-bottom: 10px;
+  width: 280px;
+}
+
+.search-input-wrapper {
+  position: relative;
 }
 
 .search-control input {
-  width: 200px;
-  padding: 6px 10px;
+  width: 100%;
+  padding: 6px 32px 6px 10px;
   border: 1px solid oklch(0% 0 0 / 0.2);
   border-radius: 3px;
   font-size: 14px;
+}
+
+.search-clear-btn {
+  display: none;
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  color: oklch(0% 0 0 / 0.5);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 3px;
+}
+
+.search-clear-btn:hover {
+  color: oklch(0% 0 0 / 0.8);
+  background: oklch(0% 0 0 / 0.05);
 }
 
 #search-results {
@@ -176,7 +236,7 @@ body,
   z-index: 1000;
   right: 200px;
   bottom: 0;
-  font-size: 8px;
+  font-size: 10px;
   padding: 4px 8px;
   border-radius: 4px 0 0 0;
 }
@@ -184,4 +244,35 @@ body,
 ul {
   margin-block-start: 1em;
   padding-inline-start: 1em;
+}
+
+.loading-indicator {
+  background: oklch(100% 0.00011 271.152 / 0.9);
+  backdrop-filter: blur(2px);
+  padding: 16px 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 15px oklch(0% 0 0 / 0.2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid oklch(0% 0 0 / 0.1);
+  border-top-color: oklch(50% 0.15 264);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-error {
+  color: oklch(40% 0.15 30);
+  font-weight: 500;
 }
