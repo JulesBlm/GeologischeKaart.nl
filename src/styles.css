@@ -89,7 +89,7 @@ body,
   padding: 14px 16px;
   width: 340px;
   min-height: 180px;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
   background: var(--ui-bg);
   color: var(--ui-text);
@@ -102,7 +102,7 @@ body,
 }
 
 .info h1 {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -110,7 +110,7 @@ body,
 }
 
 .info h2 {
-  font-size: 15px;
+  font-size: 16px;
   margin-bottom: 6px;
   color: var(--ui-text);
 }
@@ -205,7 +205,7 @@ body,
   padding: 6px 32px 6px 10px;
   border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius);
-  font-size: 13px;
+  font-size: 16px;
   font-family: inherit;
   background: var(--gray-4);
   color: var(--ui-text);
@@ -355,7 +355,7 @@ body,
     width: 100%;
     min-height: auto;
     padding: 16px;
-    font-size: 13px;
+    font-size: 14px;
     border-radius: var(--ui-radius) var(--ui-radius) 0 0;
     margin: 0;
   }
@@ -371,7 +371,7 @@ body,
   margin-top: 16px;
   padding-top: 12px;
   border-top: 1px solid var(--ui-border);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--ui-text-secondary);
 }
 
@@ -413,7 +413,7 @@ ul {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--ui-text-secondary);
 }
