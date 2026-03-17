@@ -1,6 +1,6 @@
 {
   "name": "geologischekaart.nl",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Leaflet.js geologische kaart van Nederland",
   "source": "src/index.html",
   "author": {
@@ -22,7 +22,8 @@
     "build": "parcel build"
   },
   "devDependencies": {
-    "parcel": "^2.16.1"
+    "parcel": "^2.16.1",
+    "parcel-reporter-static-files-copy": "^1.5.3"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

@@ -5,6 +5,7 @@ import { feature } from "topojson-client";
 import {} from "leaflet.vectorgrid/dist/Leaflet.VectorGrid.bundled.js";
 
 import key from "./key.json";
+import logoUrl from "url:./logo.svg";
 
 const DEFAULT_MAP_ZOOM = 7;
 const map = L.map("map")
@@ -19,21 +20,25 @@ map.attributionControl.addAttribution(
 );
 
 // Base map layers
-const osmLayer = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 18,
-  attribution:
-    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-});
-
-const satelliteLayer = L.tileLayer(
-  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+const brtLayer = L.tileLayer(
+  "https://service.pdok.nl/brt/achtergrondkaart/wmts/v2_0/standaard/EPSG:3857/{z}/{x}/{y}.png",
   {
-    maxZoom: 18,
-    attribution: '&copy; <a href="https://www.esri.com/">Esri</a>',
+    maxZoom: 19,
+    attribution:
+      'Kaartgegevens &copy; <a href="https://www.kadaster.nl">Kadaster</a>',
   }
 );
 
-osmLayer.addTo(map);
+const luchtfotoLayer = L.tileLayer(
+  "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_orthoHR/EPSG:3857/{z}/{x}/{y}.jpeg",
+  {
+    maxZoom: 21,
+    attribution:
+      'Luchtfoto &copy; <a href="https://www.kadaster.nl">Kadaster</a>',
+  }
+);
+
+brtLayer.addTo(map);
 
 const loadingControl = L.control({ position: "topleft" });
 loadingControl.onAdd = function () {
@@ -100,7 +105,9 @@ info.update = function (props) {
   } else {
     html += "</div>";
     html +=
-      "Beweeg je muis over een formatie, klik er op om deze vast te zetten";
+      '<p>Beweeg je muis over een formatie, klik er op om deze vast te zetten</p>';
+    html +=
+      `<div class="info-branding"><span>App van</span> <a href="https://bedrock.engineer" target="_blank" rel="noopener"><img src="${logoUrl}" alt="Bedrock.engineer logo" height="42" /></a></div>`;
   }
 
   this._div.innerHTML = html;
@@ -378,8 +385,8 @@ function initializeMap(geologicalmap) {
     div.innerHTML = `
     <div class="layer-control-section">
       <h3>Ondergrond</h3>
-      <label><input type="radio" name="baselayer" value="osm" checked> Stratenkaart</label>
-      <label><input type="radio" name="baselayer" value="satellite"> Satelliet</label>
+      <label><input type="radio" name="baselayer" value="brt" checked> Topografisch</label>
+      <label><input type="radio" name="baselayer" value="luchtfoto"> Luchtfoto</label>
     </div>
     <div class="layer-control-section">
       <h3>Geologische Kaart</h3>
@@ -398,12 +405,12 @@ function initializeMap(geologicalmap) {
   // Base layer switching
   document.querySelectorAll('input[name="baselayer"]').forEach((radio) => {
     radio.addEventListener("change", (e) => {
-      if (e.target.value === "osm") {
-        map.removeLayer(satelliteLayer);
-        map.addLayer(osmLayer);
+      if (e.target.value === "brt") {
+        map.removeLayer(luchtfotoLayer);
+        map.addLayer(brtLayer);
       } else {
-        map.removeLayer(osmLayer);
-        map.addLayer(satelliteLayer);
+        map.removeLayer(brtLayer);
+        map.addLayer(luchtfotoLayer);
       }
       geomapVector.bringToFront();
     });
