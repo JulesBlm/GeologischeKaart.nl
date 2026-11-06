@@ -73,9 +73,19 @@ h2 {
 }
 
 html,
-body,
-#map {
+body {
   height: 100%;
+}
+
+/* Map fills the viewport; the optional timescale panel takes its own row */
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#map {
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .strong {
@@ -434,4 +444,120 @@ ul {
 .loading-error {
   color: #d4735c;
   font-weight: 500;
+}
+
+/* ---------------------------------------------------------------------------
+   Geologic timescale panel (bottom of the screen, optional)
+   --------------------------------------------------------------------------- */
+.timescale-panel {
+  flex: none;
+  padding: 8px 12px 2px;
+  background: var(--ui-bg);
+  color: var(--ui-text);
+  border-top: 1px solid var(--ui-border);
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.timescale-panel[hidden] {
+  display: none;
+}
+
+.timescale-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.timescale-title {
+  flex: none;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ui-text-secondary);
+}
+
+.timescale-selection {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--ui-text-secondary);
+}
+
+.timescale-selection strong {
+  font-weight: 600;
+  color: var(--ui-text);
+}
+
+.timescale-close-btn {
+  flex: none;
+  background: none;
+  border: 1px solid transparent;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--ui-text-muted);
+  cursor: pointer;
+  padding: 0;
+  margin: -6px -6px -6px 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ui-radius);
+  transition-property: color, background-color, border-color, scale;
+  transition-duration: 150ms;
+  transition-timing-function: ease;
+}
+
+.timescale-close-btn:hover {
+  color: var(--ui-text);
+  background: var(--gray-4);
+  border-color: var(--ui-border);
+}
+
+.timescale-close-btn:active {
+  scale: 0.96;
+}
+
+.timescale-chart {
+  width: 100%;
+}
+
+.timescale-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: grab;
+}
+
+/* Age tick labels and lines on the dark background */
+.timescale-chart #ticks text {
+  fill: var(--ui-text-secondary);
+}
+
+.timescale-chart #ticks text:first-of-type {
+  stroke: var(--ui-bg);
+}
+
+.timescale-chart #ticks line {
+  stroke: var(--gray-9);
+}
+
+.timescale-chart #cells g {
+  transition: fill-opacity 150ms ease;
+}
+
+@media screen and (max-width: 750px) {
+  .timescale-panel {
+    padding: 6px 8px 0;
+  }
+
+  .timescale-title {
+    display: none;
+  }
 }

@@ -6,6 +6,7 @@ import {} from "leaflet.vectorgrid/dist/Leaflet.VectorGrid.bundled.js";
 
 import key from "./key.json";
 import logoUrl from "url:./logo.svg";
+import { createTimescalePanel } from "./timescale.js";
 
 const DEFAULT_MAP_ZOOM = 7;
 const map = L.map("map")
@@ -16,7 +17,7 @@ const map = L.map("map")
   ]);
 
 map.attributionControl.addAttribution(
-  "<a href='https://www.tno.nl/nl/newsroom/2023/03/geologische-kaart-koninkrijk-nederlanden/'>TNO</a>"
+  "<a href='https://www.tno.nl/nl/newsroom/2023/03/geologische-kaart-koninkrijk-nederlanden/'>TNO</a>",
 );
 
 // Base map layers
@@ -26,7 +27,7 @@ const brtLayer = L.tileLayer(
     maxZoom: 19,
     attribution:
       'Kaartgegevens &copy; <a href="https://www.kadaster.nl">Kadaster</a>',
-  }
+  },
 );
 
 const luchtfotoLayer = L.tileLayer(
@@ -35,10 +36,19 @@ const luchtfotoLayer = L.tileLayer(
     maxZoom: 21,
     attribution:
       'Luchtfoto &copy; <a href="https://www.kadaster.nl">Kadaster</a>',
-  }
+  },
 );
 
 brtLayer.addTo(map);
+
+// Optional geologic timescale below the map, linked to the selected formation
+const timescalePanel = createTimescalePanel({
+  onVisibilityChange(visible) {
+    map.invalidateSize();
+    const toggle = document.getElementById("timescale-toggle");
+    if (toggle) toggle.checked = visible;
+  },
+});
 
 const loadingControl = L.control({ position: "topleft" });
 loadingControl.onAdd = function () {
@@ -52,7 +62,7 @@ loadingControl.addTo(map);
 // Get the URL for the TopoJSON file - Parcel will copy it to dist
 const topoJsonUrl = new URL(
   "./GKNederlandGeolVlak-wgs84-topo-balanced.json",
-  import.meta.url
+  import.meta.url,
 ).href;
 
 let clicked = false;
@@ -76,7 +86,7 @@ info.update = function (props) {
       '<button class="info-close-btn" aria-label="Close info">&times;</button></div>';
 
     const linkSegment1 =
-      props.NAAM2 ?? props.NAAM1
+      (props.NAAM2 ?? props.NAAM1)
         ? (props.NAAM2 ?? props.NAAM1).toLowerCase().replace(/\s+/g, "-")
         : null;
 
@@ -105,9 +115,8 @@ info.update = function (props) {
   } else {
     html += "</div>";
     html +=
-      '<p>Beweeg je muis over een formatie, klik er op om deze vast te zetten</p>';
-    html +=
-      `<div class="info-branding"><span>App van</span> <a href="https://bedrock.engineer" target="_blank" rel="noopener"><img src="${logoUrl}" alt="Bedrock.engineer logo" height="42" /></a></div>`;
+      "<p>Beweeg je muis over een formatie, klik er op om deze vast te zetten</p>";
+    html += `<div class="info-branding"><span>App van</span> <a href="https://bedrock.engineer" target="_blank" rel="noopener"><img src="${logoUrl}" alt="Bedrock.engineer logo" height="42" /></a></div>`;
   }
 
   this._div.innerHTML = html;
@@ -132,6 +141,7 @@ function clearSelection() {
   }
   clicked = false;
   info.update();
+  timescalePanel.clear();
 }
 
 function click({ layer }) {
@@ -164,6 +174,7 @@ function click({ layer }) {
     };
     geomapVector.setFeatureStyle(properties.id, style);
     info.update(properties);
+    timescalePanel.select(properties);
   }
 }
 
@@ -208,7 +219,7 @@ async function loadGeologicalMap() {
 
     const geologicalmap = feature(
       geologicalmapTopo,
-      geologicalmapTopo.objects["GKNederlandGeolVlak-wgs84"]
+      geologicalmapTopo.objects["GKNederlandGeolVlak-wgs84"],
     );
 
     map.removeControl(loadingControl);
@@ -347,8 +358,8 @@ function initializeMap(geologicalmap) {
         const response = await fetch(
           `https://nominatim.openstreetmap.org/search?` +
             `format=json&countrycodes=nl&q=${encodeURIComponent(
-              query
-            )}&limit=${SEARCH_RESULTS_LIMIT}`
+              query,
+            )}&limit=${SEARCH_RESULTS_LIMIT}`,
         );
 
         if (!response.ok) {
@@ -367,7 +378,7 @@ function initializeMap(geologicalmap) {
         searchResults.innerHTML = results
           .map(
             (result) =>
-              `<div class='search-result-item' data-lat='${result.lat}' data-lon='${result.lon}'>${result.display_name}</div>`
+              `<div class='search-result-item' data-lat='${result.lat}' data-lon='${result.lon}'>${result.display_name}</div>`,
           )
           .join("");
         searchResults.style.display = "block";
@@ -390,8 +401,12 @@ function initializeMap(geologicalmap) {
     </div>
     <div class="layer-control-section">
       <h3>Geologische Kaart</h3>
-      <label for="opacity-slider">Transparantie</label>
+      <label for="opacity-slider">Ondoorzichtigheid</label>
       <input type="range" id="opacity-slider" min="0" max="100" value="80" />
+    </div>
+    <div class="layer-control-section">
+      <h3>Panelen</h3>
+      <label><input type="checkbox" id="timescale-toggle" ${timescalePanel.isVisible() ? "checked" : ""}> Geologische tijdschaal</label>
     </div>
   `;
 
@@ -421,6 +436,13 @@ function initializeMap(geologicalmap) {
     const opacity = e.target.value / 100;
     geomapVector.setOpacity(opacity);
   });
+
+  // Timescale panel toggle
+  document
+    .getElementById("timescale-toggle")
+    .addEventListener("change", (e) => {
+      timescalePanel.setVisible(e.target.checked);
+    });
 }
 
 loadGeologicalMap();

@@ -62,5 +62,20 @@
   </head>
   <body>
     <div id="map"></div>
+    <aside
+      id="timescale-panel"
+      class="timescale-panel"
+      aria-label="Geologische tijdschaal"
+      hidden
+    >
+      <div class="timescale-header">
+        <span class="timescale-title">Geologische tijdschaal</span>
+        <span id="timescale-selection" class="timescale-selection"></span>
+        <button class="timescale-close-btn" aria-label="Tijdschaal sluiten">
+          &times;
+        </button>
+      </div>
+      <div id="timescale" class="timescale-chart"></div>
+    </aside>
   </body>
 </html>

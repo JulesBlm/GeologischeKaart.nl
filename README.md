@@ -20,6 +20,7 @@ npm run build
 - Leaflet.VectorGrid for efficient vector tile rendering
 - TopoJSON for compressed geological data (5.7MB vs 34MB GeoJSON)
 - Parcel for bundling
+- [@macrostrat/d3-timescale](https://github.com/UW-Macrostrat/geo-timescale) for the optional geologic timescale panel, linked to the selected formation
 
 ## Data
 
